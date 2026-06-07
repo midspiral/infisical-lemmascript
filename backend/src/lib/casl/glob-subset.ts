@@ -11,6 +11,7 @@ type Segment = { type: "literal"; value: string } | { type: "star" } | { type: "
 
 const SEGMENT_METACHARACTER = /[*?[\]{}!()]/;
 
+//@ extern
 const parseSegments = (glob: string): Segment[] | null => {
   const parts = glob.split("/");
   const segments: Segment[] = [];
@@ -32,7 +33,11 @@ const parseSegments = (glob: string): Segment[] | null => {
   return segments;
 };
 
+//@ verify
 const segmentMatch = (parent: Segment[], subset: Segment[], pi: number, si: number): boolean => {
+  //@ requires 0 <= pi && pi <= parent.length && 0 <= si && si <= subset.length
+  //@ decreases (parent.length - pi) + (subset.length - si)
+  //@ ensures \result == segMatchSpec(parent, subset, pi, si)
   if (pi >= parent.length && si >= subset.length) return true;
 
   // A globstar in parent can consume zero or more subset segments — try both branches.
@@ -49,6 +54,9 @@ const segmentMatch = (parent: Segment[], subset: Segment[], pi: number, si: numb
   // (each can consume zero subset segments).
   if (si >= subset.length) {
     for (let i = pi; i < parent.length; i += 1) {
+      //@ invariant pi <= i && i <= parent.length
+      //@ invariant forall(j, pi <= j && j < i ==> parent[j].type == "globstar")
+      //@ decreases parent.length - i
       if (parent[i].type !== "globstar") return false;
     }
     return true;
