@@ -1,6 +1,6 @@
 # Infisical — Verified with LemmaScript
 
-[![LemmaScript: verified](https://img.shields.io/badge/LemmaScript-verified-brightgreen)](https://github.com/midspiral/infisical-lemmascript/actions/workflows/lemmascript.yml)
+[![LemmaScript verified](https://img.shields.io/github/actions/workflow/status/midspiral/infisical-lemmascript/lemmascript.yml?branch=lemmascript&label=LemmaScript%20verified)](https://github.com/midspiral/infisical-lemmascript/actions/workflows/lemmascript.yml)
 
 
 This is a fork of [Infisical/infisical](https://github.com/Infisical/infisical) with
