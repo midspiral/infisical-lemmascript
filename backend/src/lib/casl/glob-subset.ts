@@ -9,6 +9,7 @@
 
 type Segment = { type: "literal"; value: string } | { type: "star" } | { type: "globstar" };
 
+//@ skip
 const SEGMENT_METACHARACTER = /[*?[\]{}!()]/;
 
 //@ extern
