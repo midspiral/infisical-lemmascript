@@ -87,7 +87,7 @@ which can't be named in specifications and can't carry in-body proof hints. The
 proof therefore uses a **refinement decomposition**, all machine-checked:
 
 1. **`segmentMatch` ≡ a pure spec.** The method carries
-   `//@ ensures \result == segMatchSpec(parent, subset, pi, si)`, where
+   `//@ ensures $result === segMatchSpec(parent, subset, pi, si)`, where
    `segMatchSpec` is a pure Dafny mirror of the algorithm (hand-written in the
    `.dfy`). Dafny discharges the equality from the recursive postconditions plus
    two loop invariants — pure boolean refinement, no semantic reasoning.
